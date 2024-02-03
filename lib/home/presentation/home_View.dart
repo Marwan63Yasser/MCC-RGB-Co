@@ -16,6 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:hovering/hovering.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:url_launcher/url_launcher.dart';
 //import 'package:url_launcher/url_launcher.dart';
 import 'widgets/differentWidgets/defaultTextField.dart';
 import 'widgets/previous_work/previousWork_item.dart';
@@ -140,6 +141,15 @@ class HomePage extends StatelessWidget {
             ),
       ];
 
+
+    final List<String> clientsListLinks = [
+      "https://www.aramco.com/ar",
+      "https://momrah.gov.sa/ar",
+      "https://www.sabic.com/ar",
+      "https://yc.com.sa/",
+      "https://www.nfpa.org/en"
+
+    ];
     final List<String> serviceListForm = [S.of(context).None,S.of(context).Service1,S.of(context).Service2,S.of(context).Service3,S.of(context).Service4];
     
     return BlocBuilder<BrokerCubit, BrokerStates>(
@@ -1530,10 +1540,20 @@ class HomePage extends StatelessWidget {
                                         color: Colors.white,
                                         borderRadius:
                                             BorderRadius.circular(32)),
-                                    child: Image.asset(
-                                      clientsList[index].image,
-                                      height: 10,
-                                      width: 10,
+                                    child: InkWell(
+                                      onTap: () async{
+                              final Uri url = Uri.parse(clientsListLinks[index]);
+                                              if (await canLaunchUrl(url)) {
+                                                await launchUrl(url);
+                                              } else {
+                                                throw 'Could not launch the link';
+                                              }
+                            },
+                                      child: Image.asset(
+                                        clientsList[index].image,
+                                        height: 10,
+                                        width: 10,
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
@@ -1570,46 +1590,56 @@ class HomePage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SizedBox(
-                              // color: Colors.amber,
-                              width: 280,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    height: 140,
-                                    width: 260,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(32)),
-                                    child: Image.asset(
-                                      clientsList[index].image,
-                                      height: 10,
-                                      width: 10,
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                // color: Colors.amber,
+                                width: 280,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: 140,
+                                      width: 260,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(32)),
+                                      child: InkWell(
+                                        onTap: () async{
+                              final Uri url = Uri.parse(clientsListLinks[index]);
+                                              if (await canLaunchUrl(url)) {
+                                                await launchUrl(url);
+                                              } else {
+                                                throw 'Could not launch the link';
+                                              }
+                            },
+                                        child: Image.asset(
+                                          clientsList[index].image,
+                                          height: 10,
+                                          width: 10,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  SizedBox(
-                                      width: 230,
-                                      // height: ,
-                                      child: Center(
-                                          child: Text(
-                                        clientsList[index].description,
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            fontFamily: "Alexandria",
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 14,
-                                            color: primaryC2),
-                                      )))
-                                ],
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    SizedBox(
+                                        width: 230,
+                                        // height: ,
+                                        child: Center(
+                                            child: Text(
+                                          clientsList[index].description,
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              fontFamily: "Alexandria",
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                              color: primaryC2),
+                                        )))
+                                  ],
+                                ),
                               ),
-                            ),
-                          );
+                            );
                         },
                       ),
                     ),

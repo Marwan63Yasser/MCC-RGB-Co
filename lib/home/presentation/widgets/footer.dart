@@ -16,11 +16,15 @@ class MyFooter extends StatelessWidget {
     "assets/images/x.png",
     "assets/images/insta.png",
     "assets/images/fb.png",
+    "assets/images/linkedin.png",
+    "assets/images/youtube.png",
   ];
   final List SocialLinks = [
     "https://twitter.com/Mcc8ashAlbna",
     "https://www.instagram.com/ealbnaa/",
     "https://www.facebook.com/profile.php?id=61555734955962",
+    "https://www.linkedin.com/in/%D8%B4%D8%B1%D9%83%D8%A9-%D8%A7%D9%84%D8%A8%D9%86%D8%A7%D8%A1-%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB-%D9%84%D9%84%D9%85%D9%82%D8%A7%D9%88%D9%84%D8%A7%D8%AA-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%87-%D8%A7%D9%84%D9%85%D8%AA%D9%83%D8%A7%D9%85%D9%84%D8%A9-4b19412a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "https://www.youtube.com/@user-py9br3zx1y"
   ];
   
   @override

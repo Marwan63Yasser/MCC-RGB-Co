@@ -9,6 +9,7 @@ import 'package:company_profile/home/presentation/widgets/differentWidgets/title
 import 'package:company_profile/home/presentation/widgets/footer.dart';
 import 'package:company_profile/home/presentation/widgets/navBar/content_navbar.dart';
 import 'package:company_profile/home/presentation/widgets/differentWidgets/text_overImage.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../constants.dart';
 
@@ -44,6 +45,16 @@ class OurClientsBody extends StatelessWidget {
         description: S.of(context).Client5
         ),
   ];
+    
+    final List<String> clientsListLinks = [
+      "https://www.aramco.com/ar",
+      "https://momrah.gov.sa/ar",
+      "https://www.sabic.com/ar",
+      "https://yc.com.sa/",
+      "https://www.nfpa.org/en"
+
+    ];
+
     return SingleChildScrollView(
         child: Column(
           children: [
@@ -120,10 +131,20 @@ class OurClientsBody extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(32)),
-                                child: Image.asset(
-                                  clientsList[index].image,
-                                  height: 10,
-                                  width: 10,
+                                child: InkWell(
+                                  onTap: () async{
+                              final Uri url = Uri.parse(clientsListLinks[index]);
+                                              if (await canLaunchUrl(url)) {
+                                                await launchUrl(url);
+                                              } else {
+                                                throw 'Could not launch the link';
+                                              }
+                            },
+                                  child: Image.asset(
+                                    clientsList[index].image,
+                                    height: 10,
+                                    width: 10,
+                                  ),
                                 ),
                               ),
                               const SizedBox(
@@ -191,10 +212,20 @@ class OurClientsBody extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(32)),
-                                child: Image.asset(
-                                  clientsList[index].image,
-                                  height: 10,
-                                  width: 10,
+                                child: InkWell(
+                                  onTap: () async{
+                              final Uri url = Uri.parse(clientsListLinks[index]);
+                                              if (await canLaunchUrl(url)) {
+                                                await launchUrl(url);
+                                              } else {
+                                                throw 'Could not launch the link';
+                                              }
+                            },
+                                  child: Image.asset(
+                                    clientsList[index].image,
+                                    height: 10,
+                                    width: 10,
+                                  ),
                                 ),
                               ),
                               const SizedBox(
